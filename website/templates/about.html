@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}About Me{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+<body>
+    <header>
+        <h1>Beyazit Uysal</h1>
+        <nav>
+          <a href="#about">About</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#contact">Contact</a>
+          <a href="/">Space</a>
+        </nav>
+      </header>
+      <main>
+        <section id="home">
+            <!-- <img src="static/images/beyazresim.png" id="mypic"> -->
+          <h2></h2>
+          <p>Welcome to my portfolio website!</p>
+          </section>
+        <section id="about">
+          <h2>About</h2>
+          <p>Learn more about me and my work.</p>
+          <p>My name is Beyazit Uysal, I am a computer engineering student</p>
+          <p>I'm currently focusing on machine learning and artificial intelligence. For this, I use the Python programming language.</p>
+
+          </section>
+        <section id="portfolio">
+          <h2>Portfolio</h2>
+          
+          <h1>My GitHub Repositories</h1>
+          <nav>
+            <ul>
+            {% for repo in repositories %}
+                <li>
+                <a href="{{ repo.html_url }}">{{ repo.name }}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        </nav>
+        </section>
+        <section id="contact">
+          <h2>Links</h2>
+          <p>Contact with me.</p>
+          <nav>
+            <img src="static/images/glogo.png" id="mypic">
+            <a href="https://github.com/">GitHub</a>
+
+            <img src="static/images/llogo.png" id="mypic">
+            <a href="https://www.linkedin.com/in/beyaz%C4%B1t-uysal-961a97252/">Linkedin</a>
+
+            <img src="static/images/tlogo.png" id="mypic">
+            <a href="https://twitter.com/holymasanbasa">Twitter</a>
+
+            <img src="static/images/ylogo.png" id="mypic">
+            <a href="https://www.youtube.com/channel/UCzK5S1G_lSSeSBIt7TPrmPg">Youtube</a>
+        </nav>
+        </section>
+      </main>
+</body>
+{% endblock %}
