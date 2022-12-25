@@ -65,3 +65,10 @@ section nav img{
     width:40px;
     height:40px;
 }
+
+#repo-table{
+    display: block;
+    font-weight: normal;
+    color: #252525;
+    font-size: 12px;
+}
