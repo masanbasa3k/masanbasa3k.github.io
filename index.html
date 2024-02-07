@@ -109,33 +109,52 @@
         </section>
         <hr class="m-0" />
         <hr class="m-0" />
-        <!-- Awards-->
+        <!-- Projects-->
         <section class="resume-section" id="Projects">
             <div class="resume-section-content">
                 <h2 class="mb-5">My GitHub Repositories</h2>
-                <ul class="fa-ul mb-0">
-                        <ul id="repo-list"></ul>
+                <ul class="fa-ul mb-0" id="repo-list">
+                    <script>
+                        // Fetch data from GitHub API
+                        fetch('https://api.github.com/users/masanbasa3k/repos')
+                            .then(response => response.json())
+                            .then(data => {
+                                // Render repositories
+                                const repoList = document.getElementById('repo-list');
+                                data.forEach(repo => {
+                                    const listItem = document.createElement('li');
 
-                        <script>
-                            // Fetch data from GitHub API
-                            fetch('https://api.github.com/users/masanbasa3k/repos')
-                                .then(response => response.json())
-                                .then(data => {
-                                    // Render repositories
-                                    const repoList = document.getElementById('repo-list');
-                                    data.forEach(repo => {
-                                        const listItem = document.createElement('li');
-                                        listItem.innerHTML = `<a href="${repo.html_url}" target="_blank">${repo.name}</a>`;
-                                        repoList.appendChild(listItem);
-                                    });
-                                })
-                                .catch(error => {
-                                    console.error('Error fetching data:', error);
+                                    const repoName = document.createElement('strong');
+                                    repoName.textContent = repo.name;
+
+                                    const repoDescription = document.createElement('p');
+                                    repoDescription.textContent = repo.description || 'No description provided.';
+
+                                    const repoLink = document.createElement('a');
+                                    repoLink.href = repo.html_url;
+                                    repoLink.target = '_blank';
+                                    repoLink.textContent = 'View on GitHub ' + repoName.textContent;
+
+                                    listItem.appendChild(repoName);repoList.appendChild(listItem);
+                                    listItem.appendChild(document.createElement('br'));
+                                    listItem.appendChild(repoDescription);
+                                    // listItem.appendChild(document.createElement('br'));
+                                    listItem.appendChild(repoLink);
+
+                                    repoList.appendChild(listItem);
                                 });
-                        </script>
+                            })
+                            .catch(error => {
+                                console.error('Error fetching data:', error);
+                            });
+                    </script>
                 </ul>
             </div>
         </section>
+
+
+
+
     </div>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
