@@ -23,6 +23,7 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#Projects">Projects</a></li>
             </ul>
         </div>
     </nav>
@@ -109,6 +110,32 @@
         <hr class="m-0" />
         <hr class="m-0" />
         <!-- Awards-->
+        <section class="resume-section" id="Projects">
+            <div class="resume-section-content">
+                <h2 class="mb-5">My GitHub Repositories</h2>
+                <ul class="fa-ul mb-0">
+                        <ul id="repo-list"></ul>
+
+                        <script>
+                            // Fetch data from GitHub API
+                            fetch('https://api.github.com/users/masanbasa3k/repos')
+                                .then(response => response.json())
+                                .then(data => {
+                                    // Render repositories
+                                    const repoList = document.getElementById('repo-list');
+                                    data.forEach(repo => {
+                                        const listItem = document.createElement('li');
+                                        listItem.innerHTML = `<a href="${repo.html_url}" target="_blank">${repo.name}</a>`;
+                                        repoList.appendChild(listItem);
+                                    });
+                                })
+                                .catch(error => {
+                                    console.error('Error fetching data:', error);
+                                });
+                        </script>
+                </ul>
+            </div>
+        </section>
     </div>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
